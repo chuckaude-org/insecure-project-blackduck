@@ -34,6 +34,7 @@ jobs:
         DETECT_CODE_LOCATION_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
         DETECT_DETECTOR_SEARCH_CONTINUE: true
         DETECT_DETECTOR_SEARCH_DEPTH: 10
+        DETECT_DIAGNOSTIC: true
       with:
         blackduck_url: ${{ vars.BLACKDUCK_URL }}
         blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
@@ -58,9 +59,9 @@ jobs:
         blackduck_scan_full: false
         blackduck_prComment_enabled: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
-#    - name: Save Logs
-#      if: always()
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: bridge-logs
-#        path: ${{ github.workspace }}/.bridge
+    - name: Save Logs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: bridge-logs
+        path: ${{ github.workspace }}/.bridge
